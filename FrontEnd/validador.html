@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Validador QR de viaje - SITME Metrolínea">
+    <title>Validador QR - SITME Metrolínea</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="validador">
+    <aside id="accessibility-panel" class="accessibility-panel" role="complementary" aria-label="Panel de Accesibilidad">
+        <button id="accessibility-toggle" class="accessibility-toggle" aria-label="Abrir panel de accesibilidad">
+            <span class="icon-accessibility">♿</span>
+        </button>
+        <div id="accessibility-content" class="accessibility-content hidden">
+            <h3>Accesibilidad</h3>
+            <div class="accessibility-controls">
+                <label>Tamaño de texto:</label>
+                <div class="control-group">
+                    <button id="decrease-font" aria-label="Disminuir tamaño">A-</button>
+                    <button id="increase-font" aria-label="Aumentar tamaño">A+</button>
+                </div>
+                <label>Contraste:</label>
+                <div class="control-group">
+                    <button id="high-contrast" class="filter-btn">Alto Contraste</button>
+                    <button id="grayscale" class="filter-btn">Escala de Grises</button>
+                    <button id="negative-contrast" class="filter-btn">Contraste Negativo</button>
+                </div>
+                <label><input type="checkbox" id="underline-links"> Subrayar enlaces</label>
+                <label><input type="checkbox" id="readable-font"> Fuente legible uniforme</label>
+            </div>
+        </div>
+    </aside>
+
+    <div class="mobile-container" role="main">
+        <header class="page-header">
+            <div class="page-header-top">
+                <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="language-selector">
+                    <select id="language" aria-label="Cambiar idioma">
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="en">🇬🇧 English</option>
+                    </select>
+                </div>
+            </div>
+            <h1>Validador de Viaje</h1>
+            <p class="page-subtitle">Código QR dinámico para validar tu pasaje</p>
+        </header>
+
+        <section class="qr-validator" aria-labelledby="qr-title">
+            <h2 id="qr-title" class="sr-only">Activar código QR</h2>
+            <button id="activate-qr" class="bus-icon-btn" aria-label="Activar código QR de viaje">
+                <span class="bus-icon">🚍</span>
+                <span class="btn-text">Activar QR</span>
+            </button>
+            <div id="qr-container" class="qr-container hidden">
+                <div class="qr-code">
+                    <svg viewBox="0 0 200 200" class="qr-svg" aria-label="Código QR dinámico">
+                        <rect x="0" y="0" width="200" height="200" fill="#fff"/>
+                        <rect x="10" y="10" width="30" height="30" fill="#000"/>
+                        <rect x="160" y="10" width="30" height="30" fill="#000"/>
+                        <rect x="10" y="160" width="30" height="30" fill="#000"/>
+                        <rect x="50" y="50" width="100" height="100" fill="#5d8244"/>
+                        <text x="100" y="105" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">SITME</text>
+                    </svg>
+                    <p class="qr-timer">Renovando en: <span id="qr-countdown">10</span>s</p>
+                </div>
+                <div class="security-notice">
+                    <p>🔒 Código dinámico protegido</p>
+                    <small>Captura de pantalla bloqueada por seguridad</small>
+                </div>
+            </div>
+        </section>
+
+        <footer class="app-footer">
+            <div class="footer-info">
+                <p><strong>SITME - Metrolínea</strong></p>
+                <p class="footer-version">Versión: v1.0.5+17 (2026)</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="billetera.html">Mi Billetera</a>
+                <a href="https://www.metrolinea.gov.co" target="_blank" rel="noopener">metrolinea.gov.co</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="nav.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

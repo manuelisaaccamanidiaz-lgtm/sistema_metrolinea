@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema Integrado de Transporte Masivo de Bucaramanga - SITME/Metrolínea App Reconstruida">
+    <meta name="keywords" content="Metrolínea, SITME, Bucaramanga, transporte masivo, ABT, QR dinámico">
+    <meta name="original-namespace" content="app.metrolinea.io (Lost Media 2022)">
+    <meta name="current-version" content="SITME v1.0.5+17 (2026)">
+    <title>SITME - Metrolínea Digital</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="index">
+    <aside id="accessibility-panel" class="accessibility-panel" role="complementary" aria-label="Panel de Accesibilidad">
+        <button id="accessibility-toggle" class="accessibility-toggle" aria-label="Abrir panel de accesibilidad">
+            <span class="icon-accessibility">♿</span>
+        </button>
+        <div id="accessibility-content" class="accessibility-content hidden">
+            <h3>Accesibilidad</h3>
+            <div class="accessibility-controls">
+                <label for="font-size">Tamaño de texto:</label>
+                <div class="control-group">
+                    <button id="decrease-font" aria-label="Disminuir tamaño">A-</button>
+                    <button id="increase-font" aria-label="Aumentar tamaño">A+</button>
+                </div>
+                <label>Contraste:</label>
+                <div class="control-group">
+                    <button id="high-contrast" class="filter-btn">Alto Contraste</button>
+                    <button id="grayscale" class="filter-btn">Escala de Grises</button>
+                    <button id="negative-contrast" class="filter-btn">Contraste Negativo</button>
+                </div>
+                <label><input type="checkbox" id="underline-links"> Subrayar enlaces</label>
+                <label><input type="checkbox" id="readable-font"> Fuente legible uniforme</label>
+            </div>
+        </div>
+    </aside>
+
+    <div class="mobile-container" role="main">
+        <header class="app-header">
+            <div class="header-top">
+                <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="header-top-right">
+                    <div id="user-status" class="user-status">
+                        <button id="login-btn" class="btn-login">Iniciar sesión</button>
+                        <div id="user-info" class="user-info hidden">
+                            <span class="user-name">Hola, <strong id="username">Usuario</strong></span>
+                            <span class="user-balance">Saldo: $<span id="balance">0</span> COP</span>
+                        </div>
+                    </div>
+                    <div class="language-selector">
+                        <label for="language" class="sr-only">Seleccionar idioma</label>
+                        <select id="language" aria-label="Cambiar idioma">
+                            <option value="es">🇪🇸 Español</option>
+                            <option value="en">🇬🇧 English</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="header-brand">
+                <div class="logo-container">
+                    <div class="logo-bus">🚌</div>
+                </div>
+                <h1>SITME Metrolínea</h1>
+                <p class="tagline">Movilidad Inteligente • <span class="accent">Cero Papel</span></p>
+            </div>
+        </header>
+
+        <section class="alerts-marquee" role="alert" aria-live="polite">
+            <div class="marquee-content">
+                <span class="alert-item">📢 Ajuste de rutas: Nueva ruta RD15 operativa desde el 31 de mayo</span>
+                <span class="alert-item">⚠️ Retrasos en Portal Norte por mantenimiento preventivo</span>
+                <span class="alert-item">✅ Sistema NFC disponible en todos los buses articulados</span>
+            </div>
+        </section>
+
+        <section class="trip-planner" aria-labelledby="planner-title">
+            <h2 id="planner-title">Planea tu Viaje</h2>
+            <p class="planner-subtitle">Powered by Moovit Infrastructure</p>
+            <form class="route-form">
+                <div class="form-group">
+                    <label for="origin">Origen</label>
+                    <input type="text" id="origin" placeholder="Ej: Portal Norte" list="stations-list" aria-label="Estación de origen">
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destino</label>
+                    <input type="text" id="destination" placeholder="Ej: Provenza" list="stations-list" aria-label="Estación de destino">
+                </div>
+                <datalist id="stations-list">
+                    <option value="Portal Norte (PTN)">
+                    <option value="Portal Buenavista (PTB)">
+                    <option value="UIS">
+                    <option value="Provenza">
+                    <option value="Centro">
+                    <option value="Cabecera">
+                    <option value="Piedecuesta">
+                </datalist>
+                <button type="submit" class="btn-search-route">Buscar Ruta</button>
+            </form>
+            <div class="route-suggestions">
+                <h3>Rutas Disponibles</h3>
+                <ul class="routes-list">
+                    <li class="route-item">
+                        <span class="route-name">P8</span>
+                        <span class="route-desc">Padrón estándar • 25 min</span>
+                    </li>
+                    <li class="route-item">
+                        <span class="route-name">RD15</span>
+                        <span class="route-desc">Ruta directa • 18 min</span>
+                    </li>
+                    <li class="route-item">
+                        <span class="route-name">A1</span>
+                        <span class="route-desc">Articulado • 22 min</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="real-time-map" aria-labelledby="map-title">
+            <h2 id="map-title">Seguimiento en Tiempo Real</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <p>🗺️ Mapa Interactivo</p>
+                    <p class="map-note">Ubicación vectorial de buses en tiempo real</p>
+                    <div class="map-legend">
+                        <span class="legend-item"><span class="bus-marker green">●</span> Bus disponible</span>
+                        <span class="legend-item"><span class="bus-marker yellow">●</span> Bus en ruta</span>
+                        <span class="legend-item"><span class="bus-marker red">●</span> Bus lleno</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="auth-modal" class="modal hidden" role="dialog" aria-labelledby="auth-modal-title">
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Cerrar">&times;</button>
+                <h2 id="auth-modal-title">Iniciar Sesión / Registro</h2>
+                <div class="migration-warning">
+                    <p>⚠️ <strong>Nota Importante:</strong></p>
+                    <p>Si fuiste usuario del sistema TISA anterior, tu cédula puede estar registrada. Contacta con soporte si tienes problemas al crear una cuenta nueva.</p>
+                </div>
+                <form class="auth-form">
+                    <div class="form-group">
+                        <label for="id-number">Número de Cédula</label>
+                        <input type="text" id="id-number" required pattern="[0-9]{7,10}" placeholder="Ej: 1098765432">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" required minlength="8" placeholder="Mínimo 8 caracteres">
+                        <small class="password-hint">Debe incluir mayúsculas, minúsculas y números</small>
+                    </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" id="enable-2fa"> Activar autenticación de dos factores (2FA)</label>
+                    </div>
+                    <button type="submit" class="btn-submit-auth">Ingresar</button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <div class="footer-info">
+                <p><strong>SITME - Metrolínea</strong></p>
+                <p>Sistema Integrado de Transporte Masivo del Área Metropolitana de Bucaramanga</p>
+                <p class="footer-version">Versión: v1.0.5+17 (2026) • Peso aprox: 82.5 MB</p>
+                <p class="footer-legacy">🕰️ Reconstrucción histórica del namespace original: <code>app.metrolinea.io</code> (2022)</p>
+            </div>
+            <div class="footer-links">
+                <a href="#privacy">Política de Privacidad</a>
+                <a href="#terms">Términos de Servicio</a>
+                <a href="#contact">Contacto</a>
+                <a href="https://www.metrolinea.gov.co" target="_blank" rel="noopener">metrolinea.gov.co</a>
+            </div>
+            <p class="footer-disclaimer">
+                <small>Esta es una reconstrucción educativa del "Lost Media" de Metrolínea 2022. Transición Card-Based → Account-Based Ticketing (ABT)</small>
+            </p>
+        </footer>
+    </div>
+
+    <script src="nav.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
