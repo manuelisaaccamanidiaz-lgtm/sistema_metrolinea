@@ -397,7 +397,7 @@ body.sidebar-open {
     text-align: center;
 }
 
-.header-brand h1 {
+.header-brand h1 { display: none; 
     font-size: 26px;
     font-weight: 700;
     margin-top: var(--spacing-sm);
@@ -419,8 +419,15 @@ body.sidebar-open {
 }
 
 @keyframes busFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 /* ==================== ALERTAS (BANDA AMARILLA) ==================== */
@@ -443,8 +450,13 @@ body.sidebar-open {
 }
 
 @keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 /* ==================== BILLETERA ==================== */
@@ -563,8 +575,15 @@ body.sidebar-open {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .panel-card {
@@ -658,8 +677,13 @@ body.sidebar-open {
     font-weight: 700;
 }
 
-.history-amount.negative { color: var(--color-error); }
-.history-amount.positive { color: var(--color-accent); }
+.history-amount.negative {
+    color: var(--color-error);
+}
+
+.history-amount.positive {
+    color: var(--color-accent);
+}
 
 .pocket-card {
     background: var(--color-white);
@@ -902,9 +926,17 @@ body.sidebar-open {
     font-size: var(--font-size-small);
 }
 
-.bus-marker.green { color: var(--color-accent); }
-.bus-marker.yellow { color: var(--color-secondary); }
-.bus-marker.red { color: var(--color-error); }
+.bus-marker.green {
+    color: var(--color-accent);
+}
+
+.bus-marker.yellow {
+    color: var(--color-secondary);
+}
+
+.bus-marker.red {
+    color: var(--color-error);
+}
 
 /* ==================== PUNTOS DE RECARGA ==================== */
 
@@ -1162,4 +1194,416 @@ body.sidebar-open {
     .transaction-tabs {
         grid-template-columns: repeat(4, 1fr);
     }
+}
+
+/* ==================== BARRA LATERAL FLOTANTE ==================== */
+
+.floating-sidebar {
+    position: fixed;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9996;
+}
+
+.floating-item {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    background: var(--color-white);
+    border: 2px solid var(--color-white);
+    padding: 0;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.floating-item:hover {
+    transform: scale(1.1) translateX(4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.floating-item img,
+.floating-item svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.floating-item.telegram,
+.floating-item.chatbot {
+    background: #0088cc;
+    border-color: #0088cc;
+}
+
+.floating-item.bus-track {
+    background: #8bc34a;
+    border-color: #8bc34a;
+}
+
+.floating-item.recharge {
+    background: #4caf50;
+    border-color: #4caf50;
+}
+
+@media (max-width: 480px) {
+    .floating-sidebar {
+        left: 12px;
+    }
+
+    .floating-item {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* ==================== CHAT IA ==================== */
+
+.chat-container {
+    position: fixed;
+    bottom: 80px;
+    left: 80px;
+    width: 320px;
+    height: 450px;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    z-index: 9995;
+    overflow: hidden;
+    transform: scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.chat-container.open {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.chat-header {
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.chat-close {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    background: #fdfdfd;
+}
+
+.message {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    line-height: 1.4;
+    animation: messageIn 0.3s ease-out;
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message.bot {
+    background: #eef3ea;
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+}
+
+.message.user {
+    background: var(--color-primary);
+    color: var(--color-white);
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+}
+
+.chat-input-area {
+    padding: var(--spacing-sm);
+    border-top: 1px solid var(--color-gray-lighter);
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--color-gray-lighter);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    outline: none;
+}
+
+.chat-input-area input:focus {
+    border-color: var(--color-primary);
+}
+
+.chat-send-btn {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.chat-send-btn:hover {
+    background: var(--color-primary-dark);
+}
+
+/* ==================== DIGITAL RECHARGE SECTION ==================== */
+
+.digital-recharge-promo {
+    margin-bottom: var(--spacing-xl);
+}
+
+.digital-card {
+    background: linear-gradient(135deg, #004a99 0%, #00bbcc 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.digital-card::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.digital-card-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.pse-logo {
+    background: var(--color-white);
+    color: #ff9800;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.digital-text h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.digital-text p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.btn-digital-action {
+    background: #ff9800;
+    color: var(--color-white);
+    border: none;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    font-size: 14px;
+    box-shadow: 0 4px 0 #e68a00;
+}
+
+.btn-digital-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #e68a00;
+}
+
+.btn-digital-action:active {
+    transform: translateY(2px);
+    box-shadow: 0 0 0 #e68a00;
+}
+
+@media (max-width: 480px) {
+    .chat-container {
+        left: 12px;
+        bottom: 72px;
+        width: calc(100% - 24px);
+        max-width: 340px;
+    }
+}
+/* ==================== MAP VIEW SECTION ==================== */
+.map-view-section { flex: 1; display: flex; flex-direction: column; padding: var(--spacing-md); gap: var(--spacing-md); background: #f8f9fa; }
+.map-navigation-controls { background: var(--color-white); padding: var(--spacing-sm) var(--spacing-md); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); font-size: 14px; color: var(--color-gray); border-left: 4px solid #76c043; }
+.map-iframe-wrapper { flex: 1; min-height: 500px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--color-gray-lighter); background: var(--color-white); }
+.map-iframe { width: 100%; height: 100%; border: none; }
+@media (max-width: 480px) { .map-iframe-wrapper { min-height: 550px; } }
+
+/* === NEW LOGO & STATIC MAP STYLES === */
+.header-logo-img { height: 150px; max-width: 90%%; width: auto; object-fit: contain; }
+.app-header { background: linear-gradient(135deg, #ffffff 0%, #f0f7f0 100%) !important; color: #333 !important; }
+.menu-toggle span { background: #004a99 !important; }
+.map-static-container { flex: 1; min-height: 500px; overflow: auto; background: #eee; border-radius: 12px; }
+.map-static-img { width: 100%; height: auto; min-width: 800px; cursor: grab; }
+.map-static-img:active { cursor: grabbing; }
+.btn-external-map { display: inline-block; margin-top: 10px; padding: 8px 16px; background: #76c043; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; }
+
+
+/* ==================== MODERN STYLIZED HEADER ==================== */
+.app-header {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px 24px 40px !important;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.header-brand h1 {
+    display: block !important;
+    font-size: 1.4rem !important;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #4a7c2c !important;
+    margin-top: 10px;
+}
+
+.header-logo-img {
+    height: 80px !important;
+    transition: transform 0.3s ease;
+}
+
+.header-logo-img:hover {
+    transform: scale(1.05);
+}
+
+.app-header::after {
+    content: \ \;
+    position: absolute;
+    bottom: -10px;
+    left: -10%;
+    width: 120%;
+    height: 30px;
+    background: #76c043;
+    border-radius: 50% 50% 0 0;
+    opacity: 0.1;
+    z-index: -1;
+}
+div.app-header { background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%%, rgba(240,247,240,0.8) 100%%) !important; }
+
+/* ==================== SERVICE FEEDBACK SECTION ==================== */
+.service-feedback {
+    padding: 40px 24px;
+    background: #ffffff;
+    margin: 20px 0;
+    border-radius: 24px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid #f0f0f0;
+}
+
+.service-feedback h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.feedback-form textarea {
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid #ddd;
+    min-height: 120px;
+    font-family: inherit;
+    resize: none;
+    transition: border-color 0.3s;
+}
+
+.feedback-form textarea:focus {
+    border-color: #76c043;
+    outline: none;
+}
+
+.btn-send-feedback {
+    background: #76c043;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-send-feedback:hover {
+    background: #5c9e33;
 }

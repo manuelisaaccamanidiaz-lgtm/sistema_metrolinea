@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body data-page="puntos-recarga">
-    <aside id="accessibility-panel" class="accessibility-panel" role="complementary" aria-label="Panel de Accesibilidad">
+    <aside id="accessibility-panel" class="accessibility-panel" role="complementary"
+        aria-label="Panel de Accesibilidad">
         <button id="accessibility-toggle" class="accessibility-toggle" aria-label="Abrir panel de accesibilidad">
             <span class="icon-accessibility">♿</span>
         </button>
@@ -38,7 +41,8 @@
     <div class="mobile-container" role="main">
         <header class="page-header">
             <div class="page-header-top">
-                <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+                <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú de navegación"
+                    aria-expanded="false">
                     <span></span><span></span><span></span>
                 </button>
                 <div class="language-selector">
@@ -54,7 +58,24 @@
 
         <section class="cae-page" aria-labelledby="cae-title">
             <h2 id="cae-title" class="sr-only">Lista de puntos CAE</h2>
-            <p class="cae-page-description">Toca un punto para ver horarios y detalles completos.</p>
+
+            <!-- Recarga Digital -->
+            <div class="digital-recharge-promo">
+                <div class="digital-card">
+                    <div class="digital-card-content">
+                        <div class="pse-logo">
+                            <span class="pse-text">PSE</span>
+                        </div>
+                        <div class="digital-text">
+                            <h3>Recarga Digital</h3>
+                            <p>Recarga al instante vía PSE o Wompi</p>
+                        </div>
+                    </div>
+                    <button class="btn-digital-action" id="btn-pse-recharge">Recargar Ahora</button>
+                </div>
+            </div>
+
+            <p class="cae-page-description">O visita un punto físico para atención presencial:</p>
             <ul class="cae-list-simple">
                 <li class="cae-list-item" data-cae="provenza" tabindex="0" role="button">
                     <span class="cae-pin">📍</span>
@@ -94,7 +115,62 @@
         </footer>
     </div>
 
+    <!-- Barra Lateral Flotante -->
+    <div class="floating-sidebar">
+        <!-- Chatbot -->
+        <a href="https://t.me/metrolineabga" target="_blank" class="floating-item chatbot"
+            aria-label="Contactar con Chatbot">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="padding: 8px;">
+                <path
+                    d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
+                    fill="white" />
+                <path d="M7 9H17V11H7V9Z" fill="white" />
+                <path d="M7 13H17V15H7V13Z" fill="white" />
+                <path d="M9 16H15V18H9V16Z" fill="white" />
+                <circle cx="9" cy="11" r="1" fill="white" />
+                <circle cx="15" cy="11" r="1" fill="white" />
+            </svg>
+        </a>
+
+        <!-- Bus Track -->
+        <a href="mapa-rutas.html" class="floating-item bus-track" aria-label="Seguimiento de Bus">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" fill="#8bc34a" />
+                <rect x="25" y="25" width="50" height="50" rx="10" fill="white" />
+                <rect x="30" y="30" width="40" height="25" rx="2" fill="#8bc34a" />
+                <circle cx="35" cy="65" r="5" fill="#8bc34a" />
+                <circle cx="65" cy="65" r="5" fill="#8bc34a" />
+                <path
+                    d="M50 20C40 20 32 28 32 38C32 50 50 70 50 70C50 70 68 50 68 38C68 28 60 20 50 20ZM50 45C46 45 43 42 43 38C43 34 46 31 50 31C54 31 57 34 57 38C57 42 54 45 50 45Z"
+                    fill="#e91e63" />
+            </svg>
+        </a>
+
+        <!-- Recarga -->
+        <a href="puntos-recarga.html" class="floating-item recharge" aria-label="Recarga tu pasaje">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" fill="#4caf50" />
+                <path id="textPathTop" d="M 20,50 A 30,30 0 0,1 80,50" fill="transparent" />
+                <path id="textPathBottom" d="M 20,50 A 30,30 0 0,0 80,50" fill="transparent" />
+                <text fill="white" font-family="Arial" font-weight="bold" font-size="10">
+                    <textPath href="#textPathTop" startOffset="50%" text-anchor="middle">RECARGA AQUI</textPath>
+                </text>
+                <text fill="white" font-family="Arial" font-weight="bold" font-size="10">
+                    <textPath href="#textPathBottom" startOffset="50%" text-anchor="middle">tu pasaje</textPath>
+                </text>
+                <path d="M40 45L55 50L40 55" stroke="#ff9800" stroke-width="4" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M50 45L65 50L50 55" stroke="#ff9800" stroke-width="4" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M60 45L75 50L60 55" stroke="#ff9800" stroke-width="4" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </a>
+    </div>
+
     <script src="nav.js"></script>
+    <script src="chat.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

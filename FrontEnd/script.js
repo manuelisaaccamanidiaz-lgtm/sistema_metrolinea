@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (page === 'puntos-recarga') {
         initCAEModals();
+        initDigitalRecharge();
     }
 
     if (page === 'pqrsdf') {
@@ -516,3 +517,62 @@ function loadUserData() {
     updateUserInterface();
     updateWalletDisplay();
 }
+
+/**
+ * Inicia la funcionalidad de recarga digital vía PSE
+ */
+function initDigitalRecharge() {
+    const pseBtn = document.getElementById('btn-pse-recharge');
+    if (!pseBtn) return;
+
+    pseBtn.addEventListener('click', () => {
+        const amount = prompt('💸 Recarga Digital Metrolínea\n\nIngresa el monto a recargar vía PSE/Wompi:', '20000');
+        if (amount && !isNaN(amount)) {
+            const numAmount = parseInt(amount);
+
+            // Simulación de delay de pasarela bancaria
+            pseBtn.textContent = '⏱️ Conectando con PSE...';
+            pseBtn.disabled = true;
+
+            setTimeout(() => {
+                AppState.balance += numAmount;
+                saveUserData();
+                alert(`✅ ¡Recarga Exitosa!\n\nSe han abonado $${numAmount.toLocaleString('es-CO')} a tu cuenta SITME.`);
+                pseBtn.textContent = 'Recargar Ahora';
+                pseBtn.disabled = false;
+
+                // Actualizar UI global (saldo en header, etc)
+                updateUserInterface();
+                updateWalletDisplay();
+            }, 2000);
+        }
+    });
+}
+
+
+/* === FUNCIONALIDAD DE COMENTARIOS SOBRE EL SERVICIO === */
+document.addEventListener(\ DOMContentLoaded\, () => {
+    const feedbackForm = document.getElementById(\feedback-form\);
+    if (feedbackForm) {
+        feedbackForm.addEventListener(\submit\, (e) => {
+            e.preventDefault();
+            const text = document.getElementById(\feedback-text\).value;
+            
+            if (text.trim()) {
+                // Simulación de envío
+                const btn = feedbackForm.querySelector(\button\);
+                const originalText = btn.innerText;
+                
+                btn.innerText = \Enviando...\;
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    alert(\¡Gracias por tu mensaje! Tu comentario ha sido enviado al equipo de SITME Metrolínea para su revisión.\);
+                    feedbackForm.reset();
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                }, 1500);
+            }
+        });
+    }
+});

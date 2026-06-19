@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PQRSDF - Reporta incidencias o envía sugerencias - SITME Metrolínea">
-    <title>PQRSDF - SITME Metrolínea</title>
+    <meta name="description" content="Mapa de Rutas SITME Metrolínea - Bucaramanga y Área Metropolitana">
+    <title>Mapa de Rutas - SITME Metrolínea</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body data-page="pqrsdf">
+<body data-page="mapa-rutas">
     <aside id="accessibility-panel" class="accessibility-panel" role="complementary"
         aria-label="Panel de Accesibilidad">
         <button id="accessibility-toggle" class="accessibility-toggle" aria-label="Abrir panel de accesibilidad">
@@ -52,63 +52,38 @@
                     </select>
                 </div>
             </div>
-            <h1>PQRSDF</h1>
-            <p class="page-subtitle">Reporta incidencias o envía sugerencias</p>
+            <h1>Mapa de Rutas</h1>
+            <p class="page-subtitle">SITME - Bucaramanga y Área Metropolitana</p>
         </header>
 
-        <section class="pqrsdf-section" aria-labelledby="pqrsdf-title">
-            <h2 id="pqrsdf-title" class="sr-only">Formulario de reporte</h2>
-            <form class="pqrsdf-form">
-                <div class="form-group">
-                    <label for="incident-type">Tipo de Incidencia</label>
-                    <select id="incident-type" required>
-                        <option value="">Selecciona...</option>
-                        <option value="conductor">👨‍✈️ Conductor</option>
-                        <option value="frecuencia">🕐 Frecuencia de buses</option>
-                        <option value="infraestructura">🏗️ Infraestructura</option>
-                        <option value="servicio">📱 Servicio digital</option>
-                        <option value="felicitacion">⭐ Felicitación</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="route-number">Ruta (Opcional)</label>
-                    <input type="text" id="route-number" placeholder="Ej: P8, RD15, A1">
-                </div>
-                <div class="form-group">
-                    <label for="description">Descripción</label>
-                    <textarea id="description" rows="4" required placeholder="Describe tu experiencia..."></textarea>
-                </div>
-                <button type="submit" class="btn-submit-pqrsdf">Enviar Reporte</button>
-            </form>
+        <section class="map-view-section">
+            <div class="map-navigation-controls">
+                <p>Explora las rutas del sistema integrado en tiempo real.</p>
+            </div>
+            <div class="map-iframe-wrapper">
+                <iframe src="https://moovitapp.com/bucaramanga-2882/lines?lang=es"
+                    title="Mapa de Rutas Moovit Bucaramanga" class="map-iframe" allowfullscreen>
+                </iframe>
+            </div>
         </section>
 
         <footer class="app-footer">
             <div class="footer-info">
                 <p><strong>SITME - Metrolínea</strong></p>
-                <p>Sistema Integrado de Transporte Masivo del Área Metropolitana de Bucaramanga</p>
-                <p class="footer-version">Versión: v1.0.5+17 (2026) • Peso aprox: 82.5 MB</p>
-                <p class="footer-legacy">🕰️ Reconstrucción histórica del namespace original:
-                    <code>app.metrolinea.io</code> (2022)
-                </p>
+                <p class="footer-version">Versión: v1.0.5+17 (2026)</p>
             </div>
             <div class="footer-links">
-                <a href="#privacy">Política de Privacidad</a>
-                <a href="#terms">Términos de Servicio</a>
-                <a href="#contact">Contacto</a>
-                <a href="https://www.metrolinea.gov.co" target="_blank" rel="noopener">metrolinea.gov.co</a>
+                <a href="index.html">Inicio</a>
+                <a href="puntos-recarga.html">Recargar</a>
+                <a href="https://www.metrolinea.gov.co" target="_blank" rel="noopener">Web Oficial</a>
             </div>
-            <p class="footer-disclaimer">
-                <small>Esta es una reconstrucción educativa del "Lost Media" de Metrolínea 2022. Transición Card-Based →
-                    Account-Based Ticketing (ABT)</small>
-            </p>
         </footer>
     </div>
 
     <!-- Barra Lateral Flotante -->
     <div class="floating-sidebar">
         <!-- Chatbot -->
-        <a href="https://t.me/metrolineabga" target="_blank" class="floating-item chatbot"
-            aria-label="Contactar con Chatbot">
+        <a href="#" class="floating-item chatbot" aria-label="Contactar con Chatbot">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="padding: 8px;">
                 <path
                     d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
@@ -121,8 +96,8 @@
             </svg>
         </a>
 
-        <!-- Bus Track -->
-        <a href="mapa-rutas.html" class="floating-item bus-track" aria-label="Seguimiento de Bus">
+        <!-- Bus Track (Active state on this page) -->
+        <a href="mapa-rutas.html" class="floating-item bus-track active" aria-label="Mapa de Rutas">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="48" fill="#8bc34a" />
                 <rect x="25" y="25" width="50" height="50" rx="10" fill="white" />
